@@ -2,33 +2,19 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Pulser from './Pulser';
 import Gif from './Gif';
+import { getGifs } from '../helpers/getGifs';
 
 const Category = ({ category }) => {
 	const [gifs, setGifs] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const getGifs = async () => {
-		setIsLoading(true);
-		const baseUrl = 'https://api.giphy.com/v1/gifs/search';
-		const apiKey = 'MHd0gjVMwY5UpulmdobDKBE0mIDSqueG';
-		const url = `${baseUrl}?limit=10&api_key=${apiKey}&q=`;
-		const resp = await fetch(`${url}${encodeURI(category)}`);
-		const { data } = await resp.json();
-		const images = data.map(image => ({
-			id: image.id,
-			url: image.images?.downsized_medium.url,
-			title: image.title
-		}));
-
-		return images;
-	};
-
 	useEffect(() => {
-		getGifs().then(gifs => {
+		setIsLoading(true);
+		getGifs(category).then(gifs => {
 			setIsLoading(false);
 			setGifs(gifs);
 		});
-	}, []);
+	}, [category]);
 
 	return (
 		<React.Fragment>
