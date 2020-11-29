@@ -12,7 +12,7 @@ const Category = ({ category }) => {
 		const baseUrl = 'https://api.giphy.com/v1/gifs/search';
 		const apiKey = 'MHd0gjVMwY5UpulmdobDKBE0mIDSqueG';
 		const url = `${baseUrl}?limit=10&api_key=${apiKey}&q=`;
-		const resp = await fetch(`${url}${category}`);
+		const resp = await fetch(`${url}${encodeURI(category)}`);
 		const { data } = await resp.json();
 		const images = data.map(image => ({
 			id: image.id,
@@ -36,9 +36,9 @@ const Category = ({ category }) => {
 				<Pulser />
 			) : (
 				<React.Fragment>
+					<h2>{category}</h2>
 					{gifs.length > 0 ? (
 						<React.Fragment>
-							<h2>{category}</h2>
 							<div className="gif-list">
 								{gifs.map(gif => <Gif key={gif.id} {...gif} />)}
 							</div>

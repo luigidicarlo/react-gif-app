@@ -32,7 +32,7 @@ const AddCategory = ({ categories, setCategories }) => {
 			return;
 		}
 
-		setCategories([...categories, category]);
+		setCategories([category, ...categories]);
 		setCategory('');
 	};
 
