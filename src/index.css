@@ -1,13 +1,70 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+	--backgroundColor: #333333;
+	--color: #ffffff;
+	--redDanger: #db2a2a;
+	--spinnerSize: 48px;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0 1rem;
+	text-align: center;
+	background-color: var(--backgroundColor);
+	color: var(--color);
+}
+ol {
+	text-align: left;
+}
+.text-red {
+	color: var(--redDanger);
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.gif-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+.Gif {
+  border: 1px solid var(--color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 1rem;
+  padding: 1rem;
+}
+.Pulser {
+	border-radius: 50%;
+	width: var(--spinnerSize);
+	height: var(--spinnerSize);
+	background-color: cornflowerblue;
+	position: relative;
+	margin: 2rem auto;
+}
+.Pulser::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	width: var(--spinnerSize);
+	height: var(--spinnerSize);
+	z-index: 1;
+	border-radius: 50%;
+	background-color: cornflowerblue;
+	animation: pulse 1s ease infinite;
+	transform: translateX(-50%);
+}
+@keyframes pulse {
+	from {
+		transform: scale(1);
+		opacity: 1;
+	}
+	to {
+		transform: scale(2);
+		opacity: 0;
+	}
 }
