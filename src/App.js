@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import AddCategory from './components/AddCategory';
 import CategoriesList from './components/CategoriesList';
 
-const App = () => {
-	const [categories, setCategories] = useState([]);
+const App = ({ defaultCategories = [] }) => {
+	const [categories, setCategories] = useState(defaultCategories);
 
 	return (
 		<div className="App">
